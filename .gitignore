@@ -1,0 +1,15 @@
+# Build / packaging artifacts
+build/
+dist/
+*.spec.bak
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.venv/
+venv/
+.env
