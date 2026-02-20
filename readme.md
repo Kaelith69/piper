@@ -1,116 +1,162 @@
-# YouTube Downloader
+<p align="center">
+  <img src="banner.svg" alt="Piper — YouTube Downloader" width="800"/>
+</p>
 
-A simple, futuristic desktop application to download YouTube videos or audio in high quality using a user-friendly graphical interface built with Tkinter and [yt-dlp](https://github.com/yt-dlp/yt-dlp).
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#requirements">Requirements</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#use-cases">Use Cases</a> •
+  <a href="#specs--architecture">Specs</a> •
+  <a href="#troubleshooting">Troubleshooting</a> •
+  <a href="#license">License</a>
+</p>
+
+---
+
+**Piper** is a lightweight, futuristic desktop GUI for downloading YouTube videos and audio.  
+Built on top of [yt-dlp](https://github.com/yt-dlp/yt-dlp) and Python's `tkinter`, it gives you a clean neon-themed interface without any command-line knowledge required.
 
 ---
 
 ## Features
 
-- **Download YouTube Videos**: Save videos in up to 1080p quality.
-- **Download Audio Only**: Extract and save high-quality audio as MP3.
-- **Progress Updates**: See real-time download progress and status messages.
-- **Futuristic UI**: Neon-accented, dark-themed, modern interface.
-- **Easy to Use**: Clean, intuitive interface with no command-line required.
-- **Automatic Save Location**: Files are saved to your system's `Downloads` folder.
+| Feature | Detail |
+|---------|--------|
+| 🎬 Video download | Up to 1080p, merged into MP4 |
+| 🎵 Audio extraction | Best-quality audio, saved as 192 kbps MP3 |
+| 📊 Live progress | Progress bar + scrolling log with percentage |
+| 📁 Configurable save path | Browse button to pick any folder at runtime |
+| 🎨 Futuristic dark UI | Neon cyan/purple theme, no extra theme packages needed |
+| 🔒 Thread-safe design | All Tkinter updates happen on the main thread via a queue |
+| 📦 Single-file app | One Python file, easy to read and modify |
 
 ---
 
 ## Requirements
 
-- **Python 3.7+**
-- **yt-dlp**  
-- **ffmpeg** (for audio extraction)
-- **tkinter** (usually included with Python)
+| Requirement | Version / Notes |
+|-------------|----------------|
+| Python | 3.7 or later |
+| [yt-dlp](https://github.com/yt-dlp/yt-dlp) | Latest recommended |
+| tkinter | Bundled with Python on Windows and most Linux distros |
+| [ffmpeg](https://ffmpeg.org/) | Required for audio extraction and MP4 merging |
 
 ---
 
-## Installation & Running (Python Script)
+## Installation
 
-1. **Clone or Download this Repository**
-2. **Install Dependencies**
+### 1 — Clone the repository
 
-   ```powershell
-   pip install yt-dlp
-   ```
+```bash
+git clone https://github.com/Kaelith69/piper.git
+cd piper
+```
 
-   For audio downloads, install [ffmpeg](https://ffmpeg.org/download.html) and add it to your system PATH.
+### 2 — Install Python dependencies
 
-   - **Windows**: Download from [ffmpeg.org](https://ffmpeg.org/download.html), extract, and add the `bin` folder to your PATH.
-   - **Linux/macOS**:  
-     ```sh
-     sudo apt install ffmpeg
-     # or
-     brew install ffmpeg
-     ```
-3. **Run the Application**
+```bash
+pip install -r requirements.txt
+```
 
-   ```powershell
-   python piper.py
-   ```
+### 3 — Install ffmpeg
 
----
+| Platform | Command |
+|----------|---------|
+| **Windows** | Download from [ffmpeg.org](https://ffmpeg.org/download.html), extract, add the `bin/` folder to `PATH` |
+| **macOS** | `brew install ffmpeg` |
+| **Ubuntu/Debian** | `sudo apt install ffmpeg` |
+| **Fedora** | `sudo dnf install ffmpeg` |
 
-## Packaging as a Standalone Executable (Windows)
+### 4 — Run
 
-1. **Install PyInstaller**
-   ```powershell
-   pip install pyinstaller
-   ```
-2. **Build the Executable**
-   ```powershell
-   pyinstaller --onefile --noconsole piper.py
-   ```
-   - The `.exe` will be in the `dist` folder.
-3. **Distribute**
-   - Share the `dist/piper.exe` file. Users still need [ffmpeg](https://ffmpeg.org/download.html) in their PATH for audio downloads.
+```bash
+python piper.py
+```
 
 ---
 
 ## Usage
 
-1. **Enter the full YouTube video URL in the input box.**
-2. **Select either Video (1080p) or Audio (High Quality).**
-3. **Click Download.**
-4. **Progress and status messages will appear in the status box.**
-5. **Downloaded files will be saved in your `Downloads` folder.**
+1. **Paste** a full YouTube URL into the input field (e.g. `https://www.youtube.com/watch?v=dQw4w9WgXcQ`).  
+2. **Choose** a download type:
+   - **Video (1080p)** — downloads video + audio streams and merges them into an MP4 file.
+   - **Audio (High Quality MP3)** — extracts the best audio stream and converts it to 192 kbps MP3.
+3. *(Optional)* Click **Browse…** to change the save folder.  
+4. Click **Download**.  
+5. Watch the progress bar and log. The button re-enables when the download is complete.
 
 ---
 
-## File Naming
+## Use Cases
 
-- **Video**:  
-  `Title-VideoID-video.<ext>`
-- **Audio**:  
-  `Title-VideoID-audio.mp3`
+- **Offline viewing** — save lectures, tutorials, or travel content to watch without internet.  
+- **Music archiving** — extract audio from music videos, live sessions, or podcasts.  
+- **Content creation** — grab reference footage or royalty-free background music.  
+- **Research / accessibility** — local copies for students or users with limited bandwidth.
 
 ---
 
-## Functions Overview
+## Specs & Architecture
 
-- **progress_hook**: Updates the status box with download progress and completion messages.
-- **download_thread**: Handles the download process in a background thread to keep the UI responsive.
-- **download**: Starts the download thread and updates the UI.
-- **check_queue**: Periodically checks for status updates and refreshes the UI.
+```
+piper.py
+└── main()                    # All GUI setup inside a function — safe to import
+    ├── UI setup (tkinter)    # Window, styles, widgets
+    ├── browse_dir()          # Opens directory picker, updates download_dir_var
+    ├── download()            # Validates input (main thread), spawns worker thread
+    ├── download_thread()     # yt-dlp download + progress_hook (background thread)
+    │   └── progress_hook()   # Puts (type, data) tuples onto status_queue
+    └── check_queue()         # Drains queue every 100 ms, updates GUI (main thread)
+```
 
-See [piper.py](piper.py) for full implementation details.
+### Thread-safety model
+
+Tkinter is **not thread-safe**. All widget reads (`url_entry.get()`, `type_var.get()`) are performed in `download()` on the **main thread** before the worker thread starts. All GUI writes from the worker are forwarded through a `queue.Queue` and applied by `check_queue()` running on the main thread via `root.after()`.
+
+### Output file naming
+
+| Mode | Template |
+|------|----------|
+| Video | `<Title>-<VideoID>-video.mp4` |
+| Audio | `<Title>-<VideoID>-audio.mp3` |
+
+### yt-dlp format strings
+
+| Mode | Format string |
+|------|--------------|
+| Video | `bestvideo[height<=1080]+bestaudio/bestvideo+bestaudio/best` |
+| Audio | `bestaudio/best` → post-processed to MP3 192 kbps |
+
+---
+
+## Packaging as a Standalone Executable (Windows)
+
+```powershell
+pip install pyinstaller
+pyinstaller --onefile --noconsole piper.py
+```
+
+The executable is placed in `dist/piper.exe`.  
+> **Note:** Users still need ffmpeg in their PATH for audio downloads and MP4 merging.
 
 ---
 
 ## Troubleshooting
 
-- **yt-dlp not found**:  
-  Make sure you installed it with `pip install yt-dlp`.
-- **ffmpeg not found**:  
-  Ensure ffmpeg is installed and added to your system PATH.
-- **Permission errors**:  
-  Run the application with appropriate permissions or change the download directory in the code.
-- **GUI not launching**:  
-  Make sure you are running with Python 3.7+ and have all dependencies installed.
+| Symptom | Fix |
+|---------|-----|
+| `ModuleNotFoundError: yt_dlp` | Run `pip install -r requirements.txt` |
+| `ffmpeg not found` | Install ffmpeg and add it to `PATH` (see [Installation](#3--install-ffmpeg)) |
+| Progress stuck at 0% | Some streams don't report `total_bytes`; the bar will jump to 100% on finish |
+| Window too small / clipped | Resize the window or increase `geometry` in `piper.py` |
+| Permission denied on save | Choose a different folder with the **Browse…** button |
+| GUI does not open | Confirm Python ≥ 3.7 and that `tkinter` is installed (`python -m tkinter`) |
 
 ---
 
 ## License
 
-This project is for educational and personal use.
+This project is released for educational and personal use.
 
----
