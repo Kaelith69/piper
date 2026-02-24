@@ -38,24 +38,7 @@
 
 ---
 
-## 🎬 In Action
 
-> _A picture is worth a thousand words. A GIF is worth a thousand pictures._
-
-![Demo](assets/demo.gif)
-
-**📌 No GIF yet?** Place your demo recording here: `assets/demo.gif`
-
-The GIF should show:
-- Pasting a YouTube URL into the input field
-- Selecting Video or Audio mode
-- Clicking Download and watching the progress bar fill up
-- The log scrolling with percentage output
-- File appearing in the save folder
-
-Keep it short — 10–15 seconds of terminal/GUI magic, loop-friendly.
-
----
 
 ## 🧠 System Overview
 
