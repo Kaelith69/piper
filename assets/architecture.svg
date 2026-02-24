@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" width="820" height="420">
+  <defs>
+    <linearGradient id="headerGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1A2040"/>
+      <stop offset="100%" style="stop-color:#23263A"/>
+    </linearGradient>
+    <linearGradient id="headerGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2A1040"/>
+      <stop offset="100%" style="stop-color:#1A1030"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00FFF7"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#A259FF"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="#181A20" rx="12"/>
+
+  <!-- Title -->
+  <text x="410" y="35" font-family="'Segoe UI',Arial,sans-serif" font-size="16" font-weight="bold"
+    fill="#00FFF7" text-anchor="middle" letter-spacing="3" filter="url(#glow)">ARCHITECTURE DIAGRAM</text>
+
+  <!-- === MAIN THREAD column === -->
+  <rect x="30" y="55" width="340" height="335" rx="8" fill="url(#headerGrad1)" stroke="#00FFF7" stroke-width="1.5" opacity="0.9"/>
+  <rect x="30" y="55" width="340" height="34" rx="8" fill="#00FFF7" opacity="0.15"/>
+  <text x="200" y="77" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="bold"
+    fill="#00FFF7" text-anchor="middle" letter-spacing="2">⚡ MAIN THREAD</text>
+
+  <!-- Main thread boxes -->
+  <!-- UI setup -->
+  <rect x="55" y="105" width="290" height="38" rx="6" fill="#23263A" stroke="#00FFF7" stroke-width="1"/>
+  <text x="200" y="129" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#E0E0E0" text-anchor="middle">UI Setup (tkinter widgets)</text>
+
+  <!-- browse_dir -->
+  <rect x="55" y="158" width="290" height="38" rx="6" fill="#23263A" stroke="#00FFF7" stroke-width="1"/>
+  <text x="200" y="180" font-family="'Consolas',monospace" font-size="12" fill="#00FFF7" text-anchor="middle">browse_dir()</text>
+  <text x="200" y="192" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#808099" text-anchor="middle">Opens folder dialog</text>
+
+  <!-- download() -->
+  <rect x="55" y="211" width="290" height="38" rx="6" fill="#1A2030" stroke="#00FFF7" stroke-width="1.5"/>
+  <text x="200" y="233" font-family="'Consolas',monospace" font-size="12" fill="#00FFF7" text-anchor="middle">download()</text>
+  <text x="200" y="245" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#808099" text-anchor="middle">Validates input → spawns worker thread</text>
+
+  <!-- check_queue() -->
+  <rect x="55" y="264" width="290" height="38" rx="6" fill="#1A2030" stroke="#00FFF7" stroke-width="1.5"/>
+  <text x="200" y="286" font-family="'Consolas',monospace" font-size="12" fill="#00FFF7" text-anchor="middle">check_queue()</text>
+  <text x="200" y="298" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#808099" text-anchor="middle">Runs every 100ms via root.after()</text>
+
+  <!-- Update Widgets -->
+  <rect x="55" y="317" width="290" height="38" rx="6" fill="#23263A" stroke="#00FFF7" stroke-width="1"/>
+  <text x="200" y="339" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#E0E0E0" text-anchor="middle">Update Widgets (progress bar, log)</text>
+
+  <!-- === BACKGROUND THREAD column === -->
+  <rect x="450" y="55" width="340" height="335" rx="8" fill="url(#headerGrad2)" stroke="#A259FF" stroke-width="1.5" opacity="0.9"/>
+  <rect x="450" y="55" width="340" height="34" rx="8" fill="#A259FF" opacity="0.15"/>
+  <text x="620" y="77" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="bold"
+    fill="#A259FF" text-anchor="middle" letter-spacing="2">🔧 BACKGROUND THREAD</text>
+
+  <!-- download_thread() -->
+  <rect x="475" y="105" width="290" height="38" rx="6" fill="#1A1030" stroke="#A259FF" stroke-width="1.5"/>
+  <text x="620" y="127" font-family="'Consolas',monospace" font-size="12" fill="#A259FF" text-anchor="middle">download_thread()</text>
+  <text x="620" y="139" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#808099" text-anchor="middle">Runs yt-dlp download</text>
+
+  <!-- progress_hook() -->
+  <rect x="475" y="158" width="290" height="38" rx="6" fill="#23263A" stroke="#A259FF" stroke-width="1"/>
+  <text x="620" y="180" font-family="'Consolas',monospace" font-size="12" fill="#A259FF" text-anchor="middle">progress_hook()</text>
+  <text x="620" y="192" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#808099" text-anchor="middle">Puts (type, data) tuples onto queue</text>
+
+  <!-- yt-dlp -->
+  <rect x="475" y="211" width="290" height="38" rx="6" fill="#1A1030" stroke="#A259FF" stroke-width="1"/>
+  <text x="620" y="233" font-family="'Consolas',monospace" font-size="12" fill="#A259FF" text-anchor="middle">yt-dlp YoutubeDL</text>
+  <text x="620" y="245" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#808099" text-anchor="middle">Handles actual download logic</text>
+
+  <!-- ffmpeg post-process -->
+  <rect x="475" y="264" width="290" height="38" rx="6" fill="#23263A" stroke="#A259FF" stroke-width="1"/>
+  <text x="620" y="286" font-family="'Consolas',monospace" font-size="12" fill="#A259FF" text-anchor="middle">ffmpeg (post-process)</text>
+  <text x="620" y="298" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#808099" text-anchor="middle">Audio extraction / MP4 merge</text>
+
+  <!-- enable_button signal -->
+  <rect x="475" y="317" width="290" height="38" rx="6" fill="#1A1030" stroke="#A259FF" stroke-width="1"/>
+  <text x="620" y="342" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#E0E0E0" text-anchor="middle">→ signal: enable_button</text>
+
+  <!-- === QUEUE (middle) === -->
+  <rect x="355" y="185" width="90" height="70" rx="8" fill="#0D0F18" stroke="#F59E0B" stroke-width="2"/>
+  <text x="400" y="210" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="bold"
+    fill="#F59E0B" text-anchor="middle">queue</text>
+  <text x="400" y="225" font-family="'Consolas',monospace" font-size="9" fill="#F59E0B" text-anchor="middle">.Queue()</text>
+  <text x="400" y="242" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="#808099" text-anchor="middle">thread-safe</text>
+
+  <!-- Arrows -->
+  <!-- download() → spawns thread -->
+  <path d="M 345 230 L 370 230 L 370 124 L 475 124" stroke="#00FFF7" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowCyan)"/>
+
+  <!-- progress_hook → queue -->
+  <path d="M 475 177 L 445 177 L 445 215 L 445 215" stroke="#A259FF" stroke-width="1.5" fill="none" marker-end="url(#arrowPurple)"/>
+  <line x1="445" y1="215" x2="445" y2="220" stroke="#A259FF" stroke-width="1.5"/>
+  <line x1="445" y1="220" x2="447" y2="220" stroke="#A259FF" stroke-width="1.5"/>
+
+  <!-- queue → check_queue -->
+  <path d="M 355 220 L 335 220 L 335 283 L 345 283" stroke="#F59E0B" stroke-width="1.5" fill="none" marker-end="url(#arrowCyan)"/>
+
+  <!-- check_queue → update widgets -->
+  <line x1="200" y1="302" x2="200" y2="317" stroke="#00FFF7" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- enable_button signal from bg thread to main thread queue -->
+  <path d="M 475 336 L 445 336 L 445 220" stroke="#A259FF" stroke-width="1" stroke-dasharray="4,3" fill="none"/>
+</svg>

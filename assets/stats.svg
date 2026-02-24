@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 180" width="820" height="180">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D0F18"/>
+      <stop offset="100%" style="stop-color:#181A20"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="180" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="410" y="30" font-family="'Segoe UI',Arial,sans-serif" font-size="14" font-weight="bold"
+    fill="#00FFF7" text-anchor="middle" letter-spacing="3" filter="url(#glow)">PROJECT STATS</text>
+
+  <!-- Divider -->
+  <line x1="20" y1="42" x2="800" y2="42" stroke="#2A2D3E" stroke-width="1"/>
+
+  <!-- Stat 1: Lines of Code -->
+  <rect x="30" y="58" width="120" height="80" rx="8" fill="#23263A" stroke="#00FFF7" stroke-width="1"/>
+  <text x="90" y="90" font-family="'Segoe UI',Arial,sans-serif" font-size="28" font-weight="bold"
+    fill="#00FFF7" text-anchor="middle" filter="url(#glow)">222</text>
+  <text x="90" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#808099" text-anchor="middle">Lines of Code</text>
+  <text x="90" y="128" font-family="'Consolas',monospace" font-size="9" fill="#4A5070" text-anchor="middle">piper.py</text>
+
+  <!-- Stat 2: Dependencies -->
+  <rect x="170" y="58" width="120" height="80" rx="8" fill="#23263A" stroke="#A259FF" stroke-width="1"/>
+  <text x="230" y="90" font-family="'Segoe UI',Arial,sans-serif" font-size="28" font-weight="bold"
+    fill="#A259FF" text-anchor="middle" filter="url(#glow)">1</text>
+  <text x="230" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#808099" text-anchor="middle">Pip Dependency</text>
+  <text x="230" y="128" font-family="'Consolas',monospace" font-size="9" fill="#4A5070" text-anchor="middle">yt-dlp</text>
+
+  <!-- Stat 3: Max Video -->
+  <rect x="310" y="58" width="120" height="80" rx="8" fill="#23263A" stroke="#10B981" stroke-width="1"/>
+  <text x="370" y="90" font-family="'Segoe UI',Arial,sans-serif" font-size="22" font-weight="bold"
+    fill="#10B981" text-anchor="middle" filter="url(#glow)">1080p</text>
+  <text x="370" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#808099" text-anchor="middle">Max Video Quality</text>
+  <text x="370" y="128" font-family="'Consolas',monospace" font-size="9" fill="#4A5070" text-anchor="middle">MP4 merged</text>
+
+  <!-- Stat 4: Audio bitrate -->
+  <rect x="450" y="58" width="120" height="80" rx="8" fill="#23263A" stroke="#A259FF" stroke-width="1"/>
+  <text x="510" y="90" font-family="'Segoe UI',Arial,sans-serif" font-size="18" font-weight="bold"
+    fill="#A259FF" text-anchor="middle" filter="url(#glow)">192 kbps</text>
+  <text x="510" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#808099" text-anchor="middle">Audio Quality</text>
+  <text x="510" y="128" font-family="'Consolas',monospace" font-size="9" fill="#4A5070" text-anchor="middle">MP3</text>
+
+  <!-- Stat 5: Queue poll rate -->
+  <rect x="590" y="58" width="100" height="80" rx="8" fill="#23263A" stroke="#F59E0B" stroke-width="1"/>
+  <text x="640" y="90" font-family="'Segoe UI',Arial,sans-serif" font-size="20" font-weight="bold"
+    fill="#F59E0B" text-anchor="middle" filter="url(#glow)">100ms</text>
+  <text x="640" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#808099" text-anchor="middle">Queue Poll</text>
+  <text x="640" y="128" font-family="'Consolas',monospace" font-size="9" fill="#4A5070" text-anchor="middle">refresh rate</text>
+
+  <!-- Stat 6: Platforms -->
+  <rect x="710" y="58" width="90" height="80" rx="8" fill="#23263A" stroke="#00FFF7" stroke-width="1"/>
+  <text x="755" y="90" font-family="'Segoe UI',Arial,sans-serif" font-size="28" font-weight="bold"
+    fill="#00FFF7" text-anchor="middle" filter="url(#glow)">3</text>
+  <text x="755" y="108" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#808099" text-anchor="middle">Platforms</text>
+  <text x="755" y="128" font-family="'Consolas',monospace" font-size="9" fill="#4A5070" text-anchor="middle">Win/Mac/Linux</text>
+
+  <!-- Corner decorations -->
+  <g stroke="#00FFF7" stroke-width="1" fill="none" opacity="0.3">
+    <path d="M 8 8 L 8 20 L 20 20"/>
+    <path d="M 812 8 L 800 8 L 800 20"/>
+    <path d="M 8 172 L 8 160 L 20 160"/>
+    <path d="M 812 172 L 800 172 L 800 160"/>
+  </g>
+</svg>

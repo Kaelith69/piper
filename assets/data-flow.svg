@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 310" width="820" height="310">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D0F18"/>
+      <stop offset="100%" style="stop-color:#181A20"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00FFF7"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#10B981"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#A259FF"/>
+    </marker>
+    <marker id="arrowYellow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#F59E0B"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="310" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- Title -->
+  <text x="410" y="32" font-family="'Segoe UI',Arial,sans-serif" font-size="15" font-weight="bold"
+    fill="#00FFF7" text-anchor="middle" letter-spacing="3" filter="url(#glow)">DATA FLOW DIAGRAM</text>
+
+  <!-- ── Step 1: User Input ── -->
+  <rect x="20" y="115" width="120" height="50" rx="8" fill="#23263A" stroke="#00FFF7" stroke-width="1.5"/>
+  <text x="80" y="136" font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold"
+    fill="#00FFF7" text-anchor="middle">User Input</text>
+  <text x="80" y="152" font-family="'Consolas',monospace" font-size="9" fill="#A0A8C8" text-anchor="middle">YouTube URL</text>
+
+  <!-- Arrow 1 -->
+  <line x1="140" y1="140" x2="175" y2="140" stroke="#00FFF7" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- ── Step 2: Validation ── -->
+  <rect x="175" y="115" width="120" height="50" rx="8" fill="#23263A" stroke="#00FFF7" stroke-width="1.5"/>
+  <text x="235" y="136" font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold"
+    fill="#00FFF7" text-anchor="middle">Validate</text>
+  <text x="235" y="152" font-family="'Consolas',monospace" font-size="9" fill="#A0A8C8" text-anchor="middle">strip + check empty</text>
+
+  <!-- Arrow 2 -->
+  <line x1="295" y1="140" x2="330" y2="140" stroke="#00FFF7" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- ── Step 3: yt-dlp ── -->
+  <rect x="330" y="115" width="130" height="50" rx="8" fill="#1A1030" stroke="#A259FF" stroke-width="2"/>
+  <text x="395" y="136" font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold"
+    fill="#A259FF" text-anchor="middle">yt-dlp</text>
+  <text x="395" y="152" font-family="'Consolas',monospace" font-size="9" fill="#A0A8C8" text-anchor="middle">YoutubeDL(opts)</text>
+
+  <!-- Fork arrow down-left (Video) -->
+  <path d="M 460 140 L 510 140 L 510 70 L 560 70" stroke="#10B981" stroke-width="1.5" fill="none" marker-end="url(#arrowGreen)"/>
+
+  <!-- Fork arrow down-right (Audio) -->
+  <path d="M 460 140 L 510 140 L 510 210 L 560 210" stroke="#A259FF" stroke-width="1.5" fill="none" marker-end="url(#arrowPurple)"/>
+
+  <!-- Mode label -->
+  <text x="510" y="100" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#10B981" text-anchor="middle">Video</text>
+  <text x="510" y="198" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#A259FF" text-anchor="middle">Audio</text>
+
+  <!-- ── Video Branch ── -->
+  <!-- Video format -->
+  <rect x="560" y="45" width="150" height="50" rx="8" fill="#1A2A1A" stroke="#10B981" stroke-width="1.5"/>
+  <text x="635" y="66" font-family="'Consolas',monospace" font-size="10" fill="#10B981" text-anchor="middle">bestvideo+bestaudio</text>
+  <text x="635" y="80" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#A0A8C8" text-anchor="middle">height ≤ 1080p</text>
+
+  <!-- Video → ffmpeg -->
+  <line x1="710" y1="70" x2="740" y2="70" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Video ffmpeg -->
+  <rect x="740" y="45" width="60" height="50" rx="8" fill="#1A2A1A" stroke="#10B981" stroke-width="1"/>
+  <text x="770" y="66" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#10B981" text-anchor="middle">ffmpeg</text>
+  <text x="770" y="80" font-family="'Consolas',monospace" font-size="9" fill="#A0A8C8" text-anchor="middle">merge</text>
+
+  <!-- Video output label -->
+  <text x="770" y="110" font-family="'Consolas',monospace" font-size="10" fill="#F59E0B" text-anchor="middle">📄 .mp4</text>
+
+  <!-- ── Audio Branch ── -->
+  <!-- Audio format -->
+  <rect x="560" y="185" width="150" height="50" rx="8" fill="#1A0A2A" stroke="#A259FF" stroke-width="1.5"/>
+  <text x="635" y="206" font-family="'Consolas',monospace" font-size="10" fill="#A259FF" text-anchor="middle">bestaudio/best</text>
+  <text x="635" y="220" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#A0A8C8" text-anchor="middle">best quality stream</text>
+
+  <!-- Audio → ffmpeg -->
+  <line x1="710" y1="210" x2="740" y2="210" stroke="#A259FF" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+
+  <!-- Audio ffmpeg -->
+  <rect x="740" y="185" width="60" height="50" rx="8" fill="#1A0A2A" stroke="#A259FF" stroke-width="1"/>
+  <text x="770" y="206" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#A259FF" text-anchor="middle">ffmpeg</text>
+  <text x="770" y="220" font-family="'Consolas',monospace" font-size="9" fill="#A0A8C8" text-anchor="middle">→ MP3</text>
+
+  <!-- Audio output label -->
+  <text x="770" y="250" font-family="'Consolas',monospace" font-size="10" fill="#F59E0B" text-anchor="middle">🎵 .mp3</text>
+
+  <!-- Progress queue annotation -->
+  <rect x="330" y="185" width="130" height="40" rx="6" fill="#1C1800" stroke="#F59E0B" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="395" y="202" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#F59E0B" text-anchor="middle">progress_hook →</text>
+  <text x="395" y="216" font-family="'Consolas',monospace" font-size="9" fill="#F59E0B" text-anchor="middle">status_queue</text>
+  <line x1="395" y1="165" x2="395" y2="185" stroke="#F59E0B" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrowYellow)"/>
+
+  <!-- Bottom legend -->
+  <rect x="20" y="260" width="14" height="8" rx="2" fill="#10B981"/>
+  <text x="40" y="269" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#A0A8C8">Video path</text>
+  <rect x="120" y="260" width="14" height="8" rx="2" fill="#A259FF"/>
+  <text x="140" y="269" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#A0A8C8">Audio path</text>
+  <rect x="220" y="260" width="14" height="8" rx="2" fill="#F59E0B"/>
+  <text x="240" y="269" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#A0A8C8">Progress events</text>
+  <rect x="350" y="260" width="14" height="8" rx="2" fill="#00FFF7"/>
+  <text x="370" y="269" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#A0A8C8">Main flow</text>
+</svg>

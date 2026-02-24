@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" width="900" height="220">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D0F18"/>
+      <stop offset="100%" style="stop-color:#181A20"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00FFF7"/>
+      <stop offset="50%" style="stop-color:#A259FF"/>
+      <stop offset="100%" style="stop-color:#00FFF7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="220" fill="url(#bg)" rx="12"/>
+
+  <!-- Grid lines (subtle) -->
+  <g stroke="#1E2235" stroke-width="1" opacity="0.6">
+    <line x1="0" y1="44" x2="900" y2="44"/>
+    <line x1="0" y1="88" x2="900" y2="88"/>
+    <line x1="0" y1="132" x2="900" y2="132"/>
+    <line x1="0" y1="176" x2="900" y2="176"/>
+    <line x1="180" y1="0" x2="180" y2="220"/>
+    <line x1="360" y1="0" x2="360" y2="220"/>
+    <line x1="540" y1="0" x2="540" y2="220"/>
+    <line x1="720" y1="0" x2="720" y2="220"/>
+  </g>
+
+  <!-- Left decorative icon: play button in circle -->
+  <g transform="translate(70, 110)" filter="url(#glow)">
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#00FFF7" stroke-width="2.5" opacity="0.9"/>
+    <circle cx="0" cy="0" r="30" fill="#23263A" opacity="0.8"/>
+    <!-- pipe symbol -->
+    <rect x="-8" y="-16" width="5" height="32" rx="2" fill="#A259FF"/>
+    <!-- play triangle -->
+    <polygon points="-1,-14 17,0 -1,14" fill="#00FFF7"/>
+  </g>
+
+  <!-- Neon accent lines -->
+  <line x1="130" y1="110" x2="175" y2="110" stroke="#00FFF7" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Main title -->
+  <text x="450" y="100"
+    font-family="'Segoe UI', 'Arial', sans-serif"
+    font-size="72"
+    font-weight="900"
+    letter-spacing="18"
+    text-anchor="middle"
+    fill="url(#titleGrad)"
+    filter="url(#glow)">PIPER</text>
+
+  <!-- Subtitle -->
+  <text x="450" y="142"
+    font-family="'Segoe UI', 'Arial', sans-serif"
+    font-size="16"
+    letter-spacing="4"
+    text-anchor="middle"
+    fill="#A0A8C8">YouTube Downloader — Video &amp; Audio</text>
+
+  <!-- Bottom accent bar -->
+  <rect x="200" y="168" width="500" height="2" rx="1" fill="url(#titleGrad)" opacity="0.7"/>
+
+  <!-- Tag line -->
+  <text x="450" y="195"
+    font-family="'Segoe UI', 'Arial', sans-serif"
+    font-size="12"
+    letter-spacing="2"
+    text-anchor="middle"
+    fill="#4A5070">Python · yt-dlp · tkinter · ffmpeg</text>
+
+  <!-- Corner decorations -->
+  <g stroke="#00FFF7" stroke-width="1.5" fill="none" opacity="0.4">
+    <path d="M 15 15 L 15 35 L 35 35"/>
+    <path d="M 885 15 L 865 15 L 865 35"/>
+    <path d="M 15 205 L 15 185 L 35 185"/>
+    <path d="M 885 205 L 865 205 L 865 185"/>
+  </g>
+</svg>
